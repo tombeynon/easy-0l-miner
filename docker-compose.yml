@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  miner:
+    build: .
+    ulimits:
+      nofile: 100000
+    # environment:
+      # - NODE_IP=<your node IP>
+      # - MNEM=<your menmonic>
+      # - FORCE_INIT=1
+      # - FORCE_ONBOARD=1
+    env_file: .env
+    volumes:
+      - ./.0L:/root/.0L
