@@ -27,7 +27,7 @@ RUN make bins && make install
 
 FROM base
 
-COPY --from=build /root/bin/* /usr/bin
+COPY --from=build /root/bin/* /usr/bin/
 
 #
 # Install using official install script in the future
@@ -36,6 +36,8 @@ COPY --from=build /root/bin/* /usr/bin
 # ENV PATH="${PATH}:~/bin"
 # RUN apt-get update && apt-get install -y curl && apt-get clean
 # RUN curl -sL https://raw.githubusercontent.com/OLSF/libra/main/ol/util/install.sh | bash
+
+ENV NODE_ENV="prod"
 
 WORKDIR /root/.0L
 
