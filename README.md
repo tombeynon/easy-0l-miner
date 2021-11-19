@@ -15,7 +15,7 @@ you can pass the `MNEM` environment variable and the container will recover your
 to keep your mnemonic secret, you can run the onboarding commands manually and enter your mnemonic into the prompts.
 
 Note that your configuration files and proofs will be stored in a directory mapped to your local filesystem. 
-Look out for `./.0L` in the examples below, you can change this or leave it as-is, but make sure you know where it is!
+Look out for `~/.0L` in the examples below, you can change this or leave it as-is, but make sure you know where it is!
 
 ### Generating a wallet
 
@@ -29,10 +29,10 @@ docker run -it ghcr.io/tombeynon/easy-0l-miner miner onboard keygen
 
 ### Running with Docker
 
-Running the miner is a one-liner with the `MNEM` variable. Note the `-v ./.0L` is the directory your config and proofs will be stored in.
+Running the miner is a one-liner with the `MNEM` variable. Note the `-v ~/.0L` is the directory your config and proofs will be stored in.
 
 ```
-docker run -v ./.0L:/root/0L -e MNEM="<your mnemonic>" -e NODE_IP=<node IP> -it ghcr.io/tombeynon/easy-0l-miner
+docker run -v ~/.0L:/root/.0L -e MNEM="<your mnemonic>" -e NODE_IP=<node IP> -it ghcr.io/tombeynon/easy-0l-miner
 ```
 
 If your config directory is empty/missing, this process will onboard and generate your first proof before starting the actual miner, which 
@@ -45,9 +45,9 @@ Skip this if you are happy using the `MNEM` variable.
 To onboard manually without the `MNEM` environment variable, run the following commands and enter your mnemonic into the prompt after each step.
 
 ```
-docker run -v ./.0L:/root/0L -it ghcr.io/tombeynon/easy-0l-miner ol init -u http://<node IP>:8080
+docker run -v ~/.0L:/root/.0L -it ghcr.io/tombeynon/easy-0l-miner ol init -u http://<node IP>:8080
 
-docker run -v ./.0L:/root/0L -it ghcr.io/tombeynon/easy-0l-miner onboard user # wait for proof 0 to mine
+docker run -v ~/.0L:/root/.0L -it ghcr.io/tombeynon/easy-0l-miner onboard user # wait for proof 0 to mine
 ```
 
 The first step might ask extra questions, they aren't important for a simple miner but can't be avoided. Answers are:
@@ -62,7 +62,7 @@ Note that if you onboard manually, you will have to enter your mnemonic whenever
 To start the miner, run the following and enter your mnemonic.
 
 ```
-docker run -v ./.0L:/root/0L -it ghcr.io/tombeynon/easy-0l-miner 
+docker run -v ~/.0L:/root/.0L -it ghcr.io/tombeynon/easy-0l-miner 
 ```
 
 ### Running with Docker Compose
@@ -82,7 +82,7 @@ services:
       - NODE_IP=<node IP>
       - MNEM=<your menmonic>
     volumes:
-      - ./.0L:/root/.0L
+      - ~/.0L:/root/.0L
 ```
 
 #### Onboarding manually with Docker Compose
