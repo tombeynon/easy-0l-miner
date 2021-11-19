@@ -1,5 +1,5 @@
 #
-# Install from source to include mortonbits' patch
+# Install from source to include latest patches
 #
 FROM rust:buster AS base
 
@@ -12,11 +12,6 @@ FROM base AS build
 RUN git clone https://github.com/OLSF/libra.git /root/libra
 
 WORKDIR /root/libra
-
-# PATCH for submitting VDF proofs
-RUN git remote add mortonbits https://github.com/mortonbits/libra.git
-RUN git fetch mortonbits submit-initial-vdf-proof
-RUN git checkout submit-initial-vdf-proof
 
 RUN apt-get install -y git vim zip unzip jq build-essential cmake clang llvm libgmp-dev secure-delete pkg-config libssl-dev lld
 
